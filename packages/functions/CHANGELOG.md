@@ -3,13 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [14.12.0](https://github.com/invertase/react-native-firebase/compare/v14.11.2...v14.12.0) (2022-09-17)
+# [15.7.0](https://github.com/invertase/react-native-firebase/compare/v15.6.0...v15.7.0) (2022-10-01)
 
 **Note:** Version bump only for package @react-native-firebase/functions
 
-## [14.11.2](https://github.com/invertase/react-native-firebase/compare/v14.11.1...v14.11.2) (2022-09-17)
+# [15.6.0](https://github.com/invertase/react-native-firebase/compare/v15.5.0...v15.6.0) (2022-09-17)
 
 **Note:** Version bump only for package @react-native-firebase/functions
+
+# [15.5.0](https://github.com/invertase/react-native-firebase/compare/v15.4.0...v15.5.0) (2022-09-16)
+
+**Note:** Version bump only for package @react-native-firebase/functions
+
+# [15.4.0](https://github.com/invertase/react-native-firebase/compare/v15.3.0...v15.4.0) (2022-08-27)
+
+**Note:** Version bump only for package @react-native-firebase/functions
+
+# [15.3.0](https://github.com/invertase/react-native-firebase/compare/v15.2.0...v15.3.0) (2022-08-07)
+
+**Note:** Version bump only for package @react-native-firebase/functions
+
+# [15.2.0](https://github.com/invertase/react-native-firebase/compare/v15.1.1...v15.2.0) (2022-07-21)
+
+**Note:** Version bump only for package @react-native-firebase/functions
+
+## [15.1.1](https://github.com/invertase/react-native-firebase/compare/v15.1.0...v15.1.1) (2022-06-28)
+
+**Note:** Version bump only for package @react-native-firebase/functions
+
+# [15.1.0](https://github.com/invertase/react-native-firebase/compare/v15.0.0...v15.1.0) (2022-06-28)
+
+**Note:** Version bump only for package @react-native-firebase/functions
+
+# [15.0.0](https://github.com/invertase/react-native-firebase/compare/v14.11.1...v15.0.0) (2022-06-20)
+
+- test(functions, ios)!: disable custom HttpsError testing ([a56dc9f](https://github.com/invertase/react-native-firebase/commit/a56dc9f5778219df056a38b9cade08f976f4ef24))
+
+### BREAKING CHANGES
+
+- if your firebase functions return custom HttpsError instances, you must not upgrade yet,
+  custom errors suffered a regression in firebase-ios-sdk 9.0.0 and 9.1.0. The next firebase-ios-sdk release
+  fixes this regression, at which point you may safely use this release in combination with overriding the firebase-ios-sdk
+  version in your Podfile
 
 ## [14.11.1](https://github.com/invertase/react-native-firebase/compare/v14.11.0...v14.11.1) (2022-06-17)
 

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2016-present Invertase Limited & Contributors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,12 +15,32 @@
  *
  */
 
-#import <Foundation/Foundation.h>
-#import <React/RCTBridgeModule.h>
+let id = 0;
 
-@interface RNFBMessagingModule : NSObject <RCTBridgeModule>
-+ (NSDictionary *_Nonnull)addCustomPropsToUserProps:(NSDictionary *_Nullable)userProps
-                                  withLaunchOptions:(NSDictionary *_Nullable)launchOptions;
-@property BOOL isDeliveryMetricsExportToBigQueryEnabled;
+export default class ScreenTrace {
+  constructor(native, identifier) {
+    this.native = native;
+    this._identifier = identifier;
+    this._id = id++;
+    this._started = false;
+    this._stopped = false;
+  }
 
-@end
+  start() {
+    if (this._started) {
+      return Promise.resolve(null);
+    }
+    this._started = true;
+
+    return this.native.startScreenTrace(this._id, this._identifier);
+  }
+
+  stop() {
+    if (this._stopped) {
+      return Promise.resolve(null);
+    }
+    this._stopped = true;
+
+    return this.native.stopScreenTrace(this._id);
+  }
+}

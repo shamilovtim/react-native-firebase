@@ -122,7 +122,8 @@ public class ReactNativeFirebaseMessagingModule extends ReactNativeFirebaseModul
 
   @ReactMethod
   public void getToken(String appName, String senderId, Promise promise) {
-    FirebaseMessaging messagingInstance = FirebaseApp.getInstance(appName).get(FirebaseMessaging.class);
+    FirebaseMessaging messagingInstance =
+        FirebaseApp.getInstance(appName).get(FirebaseMessaging.class);
     Tasks.call(getExecutor(), () -> Tasks.await(messagingInstance.getToken()))
         .addOnCompleteListener(
             task -> {
@@ -136,7 +137,8 @@ public class ReactNativeFirebaseMessagingModule extends ReactNativeFirebaseModul
 
   @ReactMethod
   public void deleteToken(String appName, String senderId, Promise promise) {
-    FirebaseMessaging messagingInstance = FirebaseApp.getInstance(appName).get(FirebaseMessaging.class);
+    FirebaseMessaging messagingInstance =
+        FirebaseApp.getInstance(appName).get(FirebaseMessaging.class);
     Tasks.call(
             getExecutor(),
             () -> {
@@ -219,10 +221,32 @@ public class ReactNativeFirebaseMessagingModule extends ReactNativeFirebaseModul
             });
   }
 
+  @ReactMethod
+  public void setDeliveryMetricsExportToBigQuery(Boolean enabled, Promise promise) {
+    Tasks.call(
+            getExecutor(),
+            () -> {
+              FirebaseMessaging.getInstance().setDeliveryMetricsExportToBigQuery(enabled);
+              return null;
+            })
+        .addOnCompleteListener(
+            task -> {
+              if (task.isSuccessful()) {
+                promise.resolve(
+                    FirebaseMessaging.getInstance().deliveryMetricsExportToBigQueryEnabled());
+              } else {
+                rejectPromiseWithExceptionMap(promise, task.getException());
+              }
+            });
+  }
+
   @Override
   public Map<String, Object> getConstants() {
     final Map<String, Object> constants = new HashMap<>();
     constants.put("isAutoInitEnabled", FirebaseMessaging.getInstance().isAutoInitEnabled());
+    constants.put(
+        "isDeliveryMetricsExportToBigQueryEnabled",
+        FirebaseMessaging.getInstance().deliveryMetricsExportToBigQueryEnabled());
     return constants;
   }
 

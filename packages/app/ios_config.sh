@@ -40,7 +40,7 @@ function setPlistValue {
 
 function getFirebaseJsonKeyValue () {
   if [[ ${_RN_ROOT_EXISTS} ]]; then
-    ruby -e "require 'rubygems';require 'json'; output=JSON.parse('$1'); puts output[$_JSON_ROOT]['$2']"
+    ruby -Ku -e "require 'rubygems';require 'json'; output=JSON.parse('$1'); puts output[$_JSON_ROOT]['$2']"
   else
     echo ""
   fi;
@@ -76,7 +76,7 @@ done
 
 if [[ ${_SEARCH_RESULT} ]]; then
   _JSON_OUTPUT_RAW=$(cat "${_SEARCH_RESULT}")
-  _RN_ROOT_EXISTS=$(ruby -e "require 'rubygems';require 'json'; output=JSON.parse('$_JSON_OUTPUT_RAW'); puts output[$_JSON_ROOT]" || echo '')
+  _RN_ROOT_EXISTS=$(ruby -Ku -e "require 'rubygems';require 'json'; output=JSON.parse('$_JSON_OUTPUT_RAW'); puts output[$_JSON_ROOT]" || echo '')
 
   if [[ ${_RN_ROOT_EXISTS} ]]; then
     if ! python3 --version >/dev/null 2>&1; then echo "python3 not found, firebase.json file processing error." && exit 1; fi
@@ -125,6 +125,14 @@ if [[ ${_SEARCH_RESULT} ]]; then
     _PLIST_ENTRY_KEYS+=("GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS")
     _PLIST_ENTRY_TYPES+=("bool")
     _PLIST_ENTRY_VALUES+=("$(jsonBoolToYesNo "$_ANALYTICS_PERSONALIZATION")")
+  fi
+
+  # config.analytics_registration_with_ad_network_enabled
+  _ANALYTICS_REGISTRATION_WITH_AD_NETWORK=$(getFirebaseJsonKeyValue "$_JSON_OUTPUT_RAW" "google_analytics_registration_with_ad_network_enabled")
+  if [[ $_ANALYTICS_REGISTRATION_WITH_AD_NETWORK ]]; then
+    _PLIST_ENTRY_KEYS+=("GOOGLE_ANALYTICS_REGISTRATION_WITH_AD_NETWORK_ENABLED")
+    _PLIST_ENTRY_TYPES+=("bool")
+    _PLIST_ENTRY_VALUES+=("$(jsonBoolToYesNo "$_ANALYTICS_REGISTRATION_WITH_AD_NETWORK")")
   fi
 
   # config.google_analytics_automatic_screen_reporting_enabled

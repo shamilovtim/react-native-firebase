@@ -7,7 +7,7 @@
   "useWorkspaces": true,
   "command": {
     "version": {
-      "allowBranch": "release-v14",
+      "allowBranch": "main",
       "conventionalCommits": true,
       "exact": true,
       "gitRemote": "origin",
@@ -20,5 +20,5 @@
     "**/e2e/**",
     "**/tests/**"
   ],
-  "version": "14.12.0"
+  "version": "15.7.0"
 }

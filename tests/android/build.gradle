@@ -1,25 +1,24 @@
 buildscript {
-  ext.buildToolsVersion = '33.0.0'
   ext.minSdkVersion = 21
-  ext.compileSdkVersion = 33
-  ext.targetSdkVersion = 33
+  ext.compileSdkVersion = 31
+  ext.targetSdkVersion = 31
   ext.ndkVersion = '21.4.7075529'
 
-  ext.kotlinVersion = '1.7.10' // https://kotlinlang.org/releases.html
-  ext.supportLibVersion = '1.9.0' // this maps to androidx.core https://developer.android.com/jetpack/androidx/releases/core
+  ext.kotlinVersion = '1.6.0' // https://kotlinlang.org/releases.html
+  ext.supportLibVersion = '1.7.0' // this maps to androidx.core https://developer.android.com/jetpack/androidx/releases/core
   //noinspection GradleDependency  https://github.com/facebook/react-native/pull/30061
   // Can bump to 1.4.0 when react-native 0.68 ships https://github.com/facebook/react-native/commit/e21f8ec34984551f87a306672160cc88e67e4793
-  ext.appCompatVersion = '1.5.1' // this maps to androidx.appcompat https://developer.android.com/jetpack/androidx/releases/appcompat
+  ext.appCompatVersion = '1.4.0' // this maps to androidx.appcompat https://developer.android.com/jetpack/androidx/releases/appcompat
   ext.supportVersion = ext.supportLibVersion
   ext.frescoVersion = '2.6.0' // https://github.com/facebook/fresco/releases
   ext.fragmentVersion = '1.4.0' // https://developer.android.com/jetpack/androidx/releases/fragment
   ext.vectordrawableVersion = '1.1.0' // https://developer.android.com/jetpack/androidx/releases/vectordrawable
-  ext.androidxAnnotationVersion = '1.4.0' // https://developer.android.com/jetpack/androidx/releases/annotation
-  ext.googlePlayServicesLocationVersion = '20.0.0' // https://developers.google.com/android/guides/setup
-  ext.googlePlayServicesVersion = '18.1.0' // play-services-base
-  ext.googlePlayServicesAuthVersion = '20.3.0' // play-services-auth
+  ext.androidxAnnotationVersion = '1.3.0' // https://developer.android.com/jetpack/androidx/releases/annotation
+  ext.googlePlayServicesLocationVersion = '19.0.1' // https://developers.google.com/android/guides/setup
+  ext.googlePlayServicesVersion = '18.0.1' // play-services-base
+  ext.googlePlayServicesAuthVersion = '20.2.0' // play-services-auth
   ext.googlePlayServicesVisionVersion = '20.1.3' // play-services-vision
-  ext.mediaCompatVersion = '1.6.0' // https://developer.android.com/jetpack/androidx/releases/media
+  ext.mediaCompatVersion = '1.4.3' // https://developer.android.com/jetpack/androidx/releases/media
   ext.supportV4Version = '1.0.0' // https://developer.android.com/jetpack/androidx/releases/legacy androidx.legacy:legacy-support-v4
   ext.swiperefreshlayoutVersion = '1.1.0' // https://developer.android.com/jetpack/androidx/releases/swiperefreshlayout
 
@@ -81,7 +80,6 @@ subprojects {
   // Force all subprojects to use one and only one set of versions
   ext {
     compileSdk = rootProject.ext.compileSdkVersion
-    buildTools = rootProject.ext.buildToolsVersion
     minSdk = rootProject.ext.minSdkVersion
     targetSdk = rootProject.ext.targetSdkVersion
   }
@@ -90,7 +88,6 @@ subprojects {
       && project.hasProperty('android')) {
       android {
         compileSdkVersion compileSdk
-        buildToolsVersion buildTools
         defaultConfig {
           minSdkVersion minSdk
           targetSdkVersion targetSdk
@@ -121,6 +118,6 @@ subprojects {
           htmlReport true
         }
       }
-      }
+    }
   }
 }

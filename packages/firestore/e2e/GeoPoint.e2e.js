@@ -106,6 +106,16 @@ describe('firestore.GeoPoint', function () {
       equal.should.equal(true);
     });
   });
+
+  describe('toJSON()', function () {
+    it('returns a json representation of the GeoPoint', function () {
+      const geo = new firebase.firestore.GeoPoint(30, 35);
+      const json = geo.toJSON();
+      json.latitude.should.eql(30);
+      json.longitude.should.eql(35);
+    });
+  });
+
   it('sets & returns correctly', async function () {
     const ref = firebase.firestore().doc(`${COLLECTION}/geopoint`);
     await ref.set({
