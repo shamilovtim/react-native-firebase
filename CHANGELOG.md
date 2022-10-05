@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.8.0](https://github.com/shamilovtim/react-native-firebase/compare/v15.7.0...v15.8.0) (2022-10-05)
+
+
+### Features
+
+* **perf:** add custom screen rendering traces ([ad8bf17](https://github.com/shamilovtim/react-native-firebase/commit/ad8bf17f73f3baaadc05e4f1840ea0d70d4054c8))
+
+
+
+
+
 # [15.7.0](https://github.com/invertase/react-native-firebase/compare/v15.6.0...v15.7.0) (2022-10-01)
 
 
