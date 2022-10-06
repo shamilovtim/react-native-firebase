@@ -150,7 +150,7 @@ export namespace FirebaseMessagingTypes {
     /**
      * The app name of the FirebaseApp instance.
      *
-     * @platform android Android
+     * @platform android Android >= 9.0.0
      */
     appName?: string;
 
